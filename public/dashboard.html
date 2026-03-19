@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reyes Rice Supply | Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="/img/rice-logo.png" alt="Reyes Rice Supply Logo" />
+      <div class="logo-text">
+        <h2>Reyes Rice Supply</h2>
+        <span>Inventory & Sales System</span>
+      </div>
+    </div>
+
+    <a href="/dashboard.html" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+    <a href="/products.html"><i class="fa-solid fa-box"></i> Products</a>
+    <a href="/sales.html"><i class="fa-solid fa-cart-shopping"></i> Sales</a>
+    <a href="/reports.html"><i class="fa-solid fa-file-lines"></i> Reports</a>
+    <a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar dashboard-topbar">
+      <div>
+        <p class="eyebrow">Analytics Dashboard</p>
+        <h1>Sales Overview</h1>
+      </div>
+      <div id="welcomeUser" class="user-badge"></div>
+    </div>
+
+    <!-- KPI Row -->
+    <section class="analytics-kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Products</span>
+          <span class="kpi-icon soft-green"><i class="fa-solid fa-box"></i></span>
+        </div>
+        <h2 id="totalProducts">0</h2>
+        <p class="kpi-sub">Available rice products</p>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Inventory Value</span>
+          <span class="kpi-icon soft-blue"><i class="fa-solid fa-warehouse"></i></span>
+        </div>
+        <h2 id="inventoryValue">₱0</h2>
+        <p class="kpi-sub">Current stock worth</p>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Total Sales</span>
+          <span class="kpi-icon soft-gold"><i class="fa-solid fa-cart-shopping"></i></span>
+        </div>
+        <h2 id="totalSales">₱0</h2>
+        <p class="kpi-sub">Recorded sales total</p>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">Total Profit</span>
+          <span class="kpi-icon soft-dark"><i class="fa-solid fa-coins"></i></span>
+        </div>
+        <h2 id="totalProfit">₱0</h2>
+        <p class="kpi-sub">Net income summary</p>
+      </div>
+    </section>
+
+    <!-- Main Analytics Area -->
+    <section class="analytics-main-grid">
+      <div class="panel analytics-main-panel">
+        <div class="analytics-header">
+          <div>
+            <p class="panel-mini-label">Performance</p>
+            <h3>Sales Over Time</h3>
+            <p class="panel-subtitle">Daily trend of recorded sales transactions</p>
+          </div>
+          <div class="analytics-pill">Live Overview</div>
+        </div>
+
+        <div class="chart-shell">
+          <canvas id="salesChart" height="120"></canvas>
+        </div>
+      </div>
+
+      <div class="analytics-side-stack">
+        <div class="mini-stat-card">
+          <span class="mini-stat-label">Low Stock Items</span>
+          <h3 id="lowStockItems">0</h3>
+        </div>
+
+        <div class="mini-stat-card">
+          <span class="mini-stat-label">Recent Activity</span>
+          <h3 id="recentSalesCount">0</h3>
+          <p class="mini-stat-sub">Latest sales loaded</p>
+        </div>
+
+        <div class="panel low-stock-panel">
+          <div class="analytics-header small">
+            <div>
+              <p class="panel-mini-label">Alerts</p>
+              <h3>Low Stock</h3>
+            </div>
+          </div>
+          <ul id="lowStockList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Sales -->
+    <section class="panel analytics-table-panel">
+      <div class="analytics-header">
+        <div>
+          <p class="panel-mini-label">Transactions</p>
+          <h3>Recent Sales</h3>
+          <p class="panel-subtitle">Latest recorded product sales</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Product</th>
+              <th>Customer</th>
+              <th>Kg Sold</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="recentSalesTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

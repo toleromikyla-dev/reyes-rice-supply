@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sales</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo">
+      <img src="/img/rice-logo.png" alt="Reyes Rice Supply Logo" />
+      <div class="logo-text">
+        <h2>Reyes</h2>
+        <span>Rice Supply</span>
+      </div>
+    </div>
+
+    <a href="/dashboard.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+    <a href="/products.html"><i class="fa-solid fa-box"></i> Products</a>
+    <a href="/sales.html"><i class="fa-solid fa-cart-shopping"></i> Sales</a>
+    <a href="/reports.html"><i class="fa-solid fa-file"></i> Reports</a>
+    <a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <h1>Sales Recording</h1>
+    </div>
+
+    <div class="panel">
+      <h3>Record Sale</h3>
+
+      <form id="saleForm">
+        <div class="form-grid">
+          <div>
+            <label>Product</label>
+            <select id="product_id" required></select>
+          </div>
+
+          <div>
+            <label>Customer</label>
+            <input type="text" id="customer_name" value="Walk-in Customer" />
+          </div>
+
+          <div>
+            <label>Kilos Sold</label>
+            <input type="number" id="kilos_sold" min="0.01" step="0.01" required />
+          </div>
+
+          <div>
+            <label>Selling Price per Kilo</label>
+            <input type="number" id="display_price_per_kilo" readonly />
+          </div>
+
+          <div>
+            <label>Available Stock</label>
+            <input type="text" id="available_stock" readonly />
+          </div>
+
+          <div>
+            <label>Estimated Total</label>
+            <input type="text" id="estimated_total" readonly />
+          </div>
+        </div>
+
+        <button type="submit">Record Sale</button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h3>Sales Transactions</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Customer</th>
+            <th>Kilos Sold</th>
+            <th>Equivalent Sacks</th>
+            <th>Total</th>
+            <th>Profit</th>
+            <th>Recorded By</th>
+          </tr>
+        </thead>
+        <tbody id="salesTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/sales.js"></script>
+</body>
+</html>

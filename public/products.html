@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reyes Rice Supply | Products</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="/img/rice-logo.png" alt="Reyes Rice Supply Logo" />
+      <div class="logo-text">
+        <h2>Reyes Rice Supply</h2>
+        <span>Inventory & Sales System</span>
+      </div>
+    </div>
+
+    <a href="/dashboard.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+    <a href="/products.html" class="active"><i class="fa-solid fa-box"></i> Products</a>
+    <a href="/sales.html"><i class="fa-solid fa-cart-shopping"></i> Sales</a>
+    <a href="/reports.html"><i class="fa-solid fa-file-lines"></i> Reports</a>
+    <a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1>Products</h1>
+      </div>
+      <div id="welcomeUser" class="user-badge"></div>
+    </div>
+
+    <section class="panel">
+      <h3 id="formTitle">Add Product</h3>
+
+      <form id="productForm">
+        <div class="form-grid">
+          <div>
+            <label for="product_name">Product Name</label>
+            <input type="text" id="product_name" required />
+          </div>
+
+          <div>
+            <label for="category">Category</label>
+            <select id="category" required>
+              <option value="Regular">Regular</option>
+              <option value="Premium">Premium</option>
+              <option value="Special">Special</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="cost_per_sack">Cost / Sack</label>
+            <input type="number" id="cost_per_sack" min="0" step="0.01" required />
+          </div>
+
+          <div>
+            <label for="selling_price_per_kilo">Price / Kg</label>
+            <input type="number" id="selling_price_per_kilo" min="0" step="0.01" required />
+          </div>
+
+          <div>
+            <label for="kilos_per_sack">Kg / Sack</label>
+            <input type="number" id="kilos_per_sack" min="1" step="0.01" value="50" required />
+          </div>
+
+          <div>
+            <label for="stock_sacks">Stock (Sacks)</label>
+            <input type="number" id="stock_sacks" min="0" step="0.01" required />
+          </div>
+
+          <div>
+            <label for="reorder_level_sacks">Reorder Level</label>
+            <input type="number" id="reorder_level_sacks" min="0" step="0.01" value="5" required />
+          </div>
+        </div>
+
+        <div style="margin-top: 10px;">
+          <label for="description">Description</label>
+          <textarea id="description" placeholder="Optional product description"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="saveBtn">Save Product</button>
+          <button type="button" class="secondary" id="cancelEditBtn" style="display:none;">Cancel Edit</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h3>Product List</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Cost / Sack</th>
+              <th>Price / Kg</th>
+              <th>Kg / Sack</th>
+              <th>Sacks</th>
+              <th>Stock Kg</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productsTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/products.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reyes Rice Supply | Reports</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="/img/rice-logo.png" alt="Reyes Rice Supply Logo" />
+      <div class="logo-text">
+        <h2>Reyes Rice Supply</h2>
+        <span>Inventory & Sales System</span>
+      </div>
+    </div>
+
+    <a href="/dashboard.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+    <a href="/products.html"><i class="fa-solid fa-box"></i> Products</a>
+    <a href="/sales.html"><i class="fa-solid fa-cart-shopping"></i> Sales</a>
+    <a href="/reports.html" class="active"><i class="fa-solid fa-file-lines"></i> Reports</a>
+    <a href="#" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1>Reports</h1>
+      </div>
+      <button type="button" onclick="window.print()">Print Report</button>
+    </div>
+
+    <section class="panel">
+      <h3>Filter Sales by Date</h3>
+      <div class="filter-grid">
+        <div>
+          <label for="startDate">From</label>
+          <input type="date" id="startDate" />
+        </div>
+        <div>
+          <label for="endDate">To</label>
+          <input type="date" id="endDate" />
+        </div>
+        <div class="filter-actions">
+          <button type="button" onclick="applyDateFilter()">Apply Filter</button>
+          <button type="button" class="secondary" onclick="resetFilter()">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="reports-grid">
+      <div class="panel">
+        <h3>Inventory Report</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Cost / Sack</th>
+                <th>Price / Kg</th>
+                <th>Sacks</th>
+                <th>Stock Kg</th>
+                <th>Stock Value</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryReportTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SALES SUMMARY -->
+<section class="panel">
+  <h3 style="margin-bottom:16px;">Sales Summary</h3>
+
+  <div class="sales-summary-grid">
+
+    <div class="summary-card summary-sales">
+      <div class="summary-icon">
+        <i class="fa-solid fa-coins"></i>
+      </div>
+      <div class="summary-content">
+        <p>Total Sales</p>
+        <h2 id="summarySales">₱0.00</h2>
+      </div>
+    </div>
+
+    <div class="summary-card summary-profit">
+      <div class="summary-icon">
+        <i class="fa-solid fa-chart-line"></i>
+      </div>
+      <div class="summary-content">
+        <p>Total Profit</p>
+        <h2 id="summaryProfit">₱0.00</h2>
+      </div>
+    </div>
+
+    <div class="summary-card summary-transactions">
+      <div class="summary-icon">
+        <i class="fa-solid fa-receipt"></i>
+      </div>
+      <div class="summary-content">
+        <p>Total Transactions</p>
+        <h2 id="summaryTransactions">0</h2>
+      </div>
+    </div>
+
+    <div class="summary-card summary-kilos">
+      <div class="summary-icon">
+        <i class="fa-solid fa-weight-hanging"></i>
+      </div>
+      <div class="summary-content">
+        <p>Total Kg Sold</p>
+        <h2 id="summaryKilos">0 kg</h2>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <section class="panel">
+      <h3>Sales Report</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Product</th>
+              <th>Kg Sold</th>
+              <th>Eqv. Sacks</th>
+              <th>Price / Kg</th>
+              <th>Total</th>
+              <th>Profit</th>
+              <th>Customer</th>
+              <th>Recorded By</th>
+            </tr>
+          </thead>
+          <tbody id="salesReportTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/reports.js"></script>
+</body>
+</html>
