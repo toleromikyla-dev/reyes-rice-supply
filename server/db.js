@@ -1,4 +1,4 @@
-const mysql = require('dotenv').config();
+require('dotenv').config();
 const mysql = require('mysql2');
 
 const db = mysql.createConnection({
@@ -13,7 +13,7 @@ db.connect((err) => {
   if (err) {
     console.error('Database connection failed:', err.message);
   } else {
-    console.log('Connected to MySQL database');
+    console.log('Connected to Railway MySQL');
   }
 });
 
